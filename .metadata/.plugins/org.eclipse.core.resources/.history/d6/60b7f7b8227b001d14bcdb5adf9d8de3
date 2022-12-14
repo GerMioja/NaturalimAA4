@@ -1,0 +1,10 @@
+package com.naturalim.demo.models;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "sugerencias")
+public class Sugerencias {
+	
+}

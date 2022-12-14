@@ -1,0 +1,10 @@
+package com.naturalim.demo.controlador.dto;
+
+public class ProductoRopaDTO {
+	private int idProducto;
+	private String nombre;
+	private String precio;
+	private String uriImagen;
+	private String nombreExtImagen;
+	private String fileBase64;
+}

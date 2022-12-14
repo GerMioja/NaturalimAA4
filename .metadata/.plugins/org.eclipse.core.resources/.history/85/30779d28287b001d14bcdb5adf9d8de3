@@ -1,0 +1,124 @@
+package com.naturalim.demo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+
+import com.naturalim.demo.models.Response;
+import com.naturalim.demo.models.Sugerencias;
+import com.naturalim.demo.service.ISugerenciasService;
+
+@Controller
+@RequestMapping("/app")
+@SessionAttributes("sugerencias")
+public class SugerenciasController {
+	
+	@Value("${titlePage.param}")
+	private String titlePage;
+	
+	@Value("${mensaje.param}")
+	private String mensaje;
+	
+	@Autowired 
+	private ISugerenciasService IpService;
+	
+	@GetMapping("/sugerencias")
+	public String ListarSugerencias(Model model) {
+		model.addAttribute("titlePage", titlePage);
+		model.addAttribute("mensaje", mensaje);
+		Response<Sugerencias> response = IpService.ObtenerListaSugerencias();
+		
+		if (response.getEstado()) {
+			model.addAttribute("ListaSugerencias", response.getListData());
+			return "sugerencias";
+		} else {
+			model.addAttribute("errores", response.getMensajeError());
+			return "errores";
+		}
+	}
+	
+	@GetMapping("/sform")
+	public String FormularioSugerencias(Model model) {
+
+		Sugerencias sugerencias = new Sugerencias();
+
+		model.addAttribute("titlePage", titlePage);
+		model.addAttribute("titulo", "Naturalim - Registro de Sugerencias");
+
+		model.addAttribute("sugerencias", sugerencias);
+
+		return "sugerenciasForm";
+	}
+	
+	@PostMapping("/sNuevoform")
+	public String CrearFormulario(@Validated ProductoAlimentos productoAlimentos, BindingResult br, Model model, SessionStatus status) {
+
+		if (br.hasErrors()) {
+			return "alimentosForm";
+		}
+		model.addAttribute("titlePage", titlePage);
+		Response<ProductoAlimentos> response = IpService.CrearProductoAlimentos(productoAlimentos);
+
+		if (response.getEstado()) {
+			model.addAttribute("titulo", "Productos Alimentos Naturalim");
+			model.addAttribute("ListaProductoAlimentos", response.getListData());
+
+			status.setComplete();
+			return "alimentos";
+		} else {
+			model.addAttribute("titulo", "Spring Framework - Control de Errores");
+			model.addAttribute("errores", response.getMensajeError());
+
+			status.setComplete();
+			return "errores";
+		}
+	}
+	
+	@GetMapping("/aEditar/{id}")
+	public String editarProductoAlimentos(@PathVariable int id, Model model) {
+		
+		model.addAttribute("titlePage", titlePage);
+		Response<ProductoAlimentos> response = IpService.EditarProductoAlimentos(id);
+
+		if (response.getEstado()) {
+			model.addAttribute("titulo", "Naturalim - "+response.getMensaje());			
+			model.addAttribute("productoAlimentos", response.getData());
+			return "alimentosForm";
+		} else {
+			model.addAttribute("titulo", "Spring Framework - Control de Errores");
+			model.addAttribute("respuesta", response.getMensaje());
+			model.addAttribute("errores", response.getMensajeError());
+
+			return "errores";
+		}
+	}
+	
+	@GetMapping("/aEliminar/{id}")
+	public String eliminarProductoAlimentos(@PathVariable int id, Model model) {
+		
+		model.addAttribute("titlePage", titlePage);
+		Response<ProductoAlimentos> response = IpService.EliminarProductoAlimentos(id);
+
+		if (response.getEstado()) {
+			model.addAttribute("titulo", "Naturalim - "+response.getMensaje());	
+			model.addAttribute("respuesta", response.getMensaje());
+			return "redirect:/app/alimentos";
+		} else {
+			model.addAttribute("titulo", "Spring Framework - Control de Errores");
+			model.addAttribute("respuesta", response.getMensaje());
+			model.addAttribute("errores", response.getMensajeError());
+
+			return "errores";
+		}		
+	}
+	
+}

@@ -1,0 +1,68 @@
+package com.naturalim.demo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.naturalim.demo.service.IProductoAlimentosService;
+import com.naturalim.demo.controlador.dto.ProductoAlimentosDTO;
+import com.naturalim.demo.models.ProductoAlimentos;
+import com.naturalim.demo.models.Response;
+
+
+@RestController
+@RequestMapping("/api")
+public class ApiRestAlimentosController {
+	
+	@Autowired
+	private IProductoAlimentosService IpService;
+	
+	
+	@GetMapping("/listar")
+	public Response<ProductoAlimentos> listarProductoAlimentos(){				
+		Response<ProductoAlimentos> resProductoAlimentos = IpService.ObtenerListaProductoAlimentos();
+		return resProductoAlimentos;
+	}
+	
+	
+	
+	@PutMapping("/crear")
+	public Response<ProductoAlimentos> crearProductoAlimentos(@RequestBody ProductoAlimentosDTO productoAlimentosDto){	
+		Response<ProductoAlimentos> response = new Response<>();
+		
+		try {
+			response = IpService.CrearProductoAlimentosAPI(productoAlimentosDto);			
+		} catch (Exception e) {
+			response.setEstado(false);
+			response.setMensaje("¡Se produjo un error al intentar crear el producto alimentario!");
+			response.setMensajeError(e.getMessage());
+		}		
+		return response;
+	}
+	
+	@PutMapping("/actualizar/{id}")
+	public Response<ProductoAlimentos> actualizarProductoAlimentos(@RequestBody ProductoAlimentosDTO productoAlimentos, @PathVariable int id){	
+		Response<ProductoAlimentos> response = new Response<>();
+		try {
+			productoAlimentos.setIdProducto(IpService.EditarProductoAlimentos(id).getData().getIdProducto());
+			response = IpService.CrearProductoAlimentosAPI(productoAlimentos);			
+		} catch (Exception e) {
+			response.setEstado(false);
+			response.setMensaje("¡Se produjo un error al intentar actualizar el producto alimentario!");
+			response.setMensajeError(e.getMessage());
+		}
+		
+		return response;
+	} 
+	
+	@DeleteMapping("/eliminar/{idProductoAlimentosEliminar}")
+	public Response<ProductoAlimentos> eliminarProductoAlimentos(@PathVariable int idProductoAlimentosEliminar){		
+		Response<ProductoAlimentos> response = IpService.EliminarProductoAlimentos(idProductoAlimentosEliminar);	
+		return response;
+	}
+}

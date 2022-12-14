@@ -1,0 +1,25 @@
+server.port= 8082
+titlePage.param= Ropa Naturalim
+mensaje.param = Naturalim
+title.param= Naturalim
+slogan.param = Un nuevo estilo de vida
+nosotros.param = Sobre Nosotros
+objetivo.param = Nuestro Objetivo
+mision.param= Llegar a mas personas con la ide de cuan importante es tener un estilo de vida saludable y que nuestros productos puedan ayudar a todos
+vision.param= Brindar un buen servicio a sus clientes, que todos puedan  tener un mejor estilo de vida .
+
+rutaGenerica= C:\\productos
+folderImages=Productos
+
+spring.datasource.url=jdbc:mysql://127.0.0.1:3306/naturalim?serverTimezone=UTC
+spring.datasource.username=root
+spring.datasource.password=Y1012Jqkhkp
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+spring.jpa.hibernate.ddl-auto=none
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
+logging.level.org.hibernate.SQL=DEBUG	
+logging.level.org.hibernate.type=TRACE
+
+spring.servlet.multipart.max-file-size=10MB
+spring.servlet.multipart.max-request-size=10MB

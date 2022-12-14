@@ -1,0 +1,14 @@
+package com.naturalim.demo.interfaces;
+
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import com.naturalim.demo.models.Productos;
+
+@Repository
+public interface IProductos extends CrudRepository<Productos, Integer> {
+
+	List<Productos> findBy(String categoria);
+	
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/plantilla/plantilla :: head" ></head>
+<body>
+	<br>
+	<header th:replace="/plantilla/plantilla :: header"></header><br>
+	
+	<div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h2>Rol</h2>
+
+                        <hr>
+                        <table class="table table-sm table-hover table-bordered ">
+                            <thead class=" table-dark">
+                                <th scope="col">id</th>
+                                <th scope="col">Contenido</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Editar</th>
+                                <th scope="col">Eliminar</th>
+                            </thead>
+                            <tbody>
+                                <tr th:each="sugerencias : ${ListaSugerencias}">
+                                    <th scope="row" th:text="${sugerencias.idSugerencia}"></th>
+                                    <td th:text="${sugerencias.contenido}"></td>
+                                    <td th:text="${sugerencias.fecha}"></td>
+                                    <td th:text="${sugerencias.estado}"></td>
+                                    <td><a th:href="@{/app/sEditar/}+${sugerencias.idSugerencia}"
+                                            class="btn btn-sm btn-info">Editar</a></td>
+                                    <td><a th:href="@{/app/sEliminar/}+${sugerencias.idSugerencia}"
+                                            class="btn btn-sm btn-danger">Eliminar</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	
+	<footer th:replace="/plantilla/plantilla :: footer"></footer>
+</body>
+</html>

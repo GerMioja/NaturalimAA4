@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/plantilla/plantilla :: head" ></head>
+<body>
+	<div class="container mt-3">
+		<div class="jumbotron">
+			<h1 class="display-4" th:text="${titulo}"></h1>
+			<hr>
+			<div class="card p-4"
+				style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+
+
+				<form th:action="@{/app/rNuevoform}" th:object="${productoRopa}"
+					method="post">
+					<div class="form-group">
+						<label for="idNombre">Nombre</label> <input type="text"
+							name="nombre" th:field="*{nombre}" class="form-control"
+							id="idNombre">
+					</div>
+					<span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
+
+					<div class="form-group">
+						<label for="idPrecio">Precio</label> <input type="text"
+							name="precio" th:field="*{precio}" class="form-control"
+							id="idPrecio">
+					</div>
+					<span th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></span>
+
+					<div class="form-group">
+						<label for="idUriImagen">Enlace Imagen</label> <input type="file"
+							name="uriImagen" class="form-control" id="idUriImagen">
+					</div>
+					
+					<button type="submit" class="btn btn-primary">Guardar</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

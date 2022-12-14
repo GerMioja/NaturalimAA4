@@ -1,0 +1,42 @@
+package com.naturalim.demo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
+import com.naturalim.demo.models.Response;
+import com.naturalim.demo.models.Rol;
+import com.naturalim.demo.service.IRolService;
+
+@Controller
+@RequestMapping("/app")
+@SessionAttributes("rol")
+public class RolController {
+	@Value("${titlePage.param}")
+	private String titlePage;
+	
+	@Value("${mensaje.param}")
+	private String mensaje;
+	
+	@Autowired
+	private IRolService IpService;
+	
+	@GetMapping("/rol")
+	public String ListarRoles(Model model) {
+		model.addAttribute("titlePage", titlePage);
+		model.addAttribute("mensaje", mensaje);
+		Response<Rol> response = IpService.ObtenerListaSugerencias();
+		
+		if (response.getEstado()) {
+			model.addAttribute("ListaSugerencias", response.getListData());
+			return "sugerencias";
+		} else {
+			model.addAttribute("errores", response.getMensajeError());
+			return "errores";
+		}
+	}
+}

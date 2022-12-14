@@ -1,0 +1,11 @@
+package com.naturalim.demo.repositorio;
+
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.naturalim.demo.models.ProductoRopa;
+
+public interface ProductoRopaDAO extends CrudRepository<ProductoRopa, Integer>{
+	public List<ProductoRopa> findByNombre( String nombre);
+}

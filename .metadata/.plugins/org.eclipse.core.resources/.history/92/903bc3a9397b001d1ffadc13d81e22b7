@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/plantilla/plantilla :: head" ></head>
+<body>
+	<br>
+	<header th:replace="/plantilla/plantilla :: header"></header><br>
+	
+	<div class="container mt-3">
+		<div class="jumbotron">
+			<h1 class="display-4" th:text="${titulo}"></h1>
+			<hr>
+			<div class="card p-4"
+				style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+
+
+				<form th:action="@{}" th:object="${rol}"
+					method="post">
+					
+					<div class="form-group">
+						<label for="contenido">Rol Asignado</label> <input type="text"
+							name="contenido" th:field="*{contenido}" class="form-control"
+							id="contenido">
+					</div>
+					<span class="form-text text-danger" th:if="${#fields.hasErrors('contenido')}" th:errors="*{contenido}"></span>
+
+					<button type="submit" class="btn btn-primary">Guardar</button>
+					
+					
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<footer th:replace="/plantilla/plantilla :: footer"></footer>
+</body>
+</html>

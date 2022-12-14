@@ -1,0 +1,28 @@
+package com.naturalim.demo.service;
+
+import java.util.List;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.naturalim.demo.interfaces.ISugerencias;
+import com.naturalim.demo.models.Sugerencias;
+import com.naturalim.demo.models.Response;
+
+public class SugerenciasService {
+	
+	@Autowired
+	private ISugerencias sugerenciasRepository;
+	
+	public Response<Sugerencias>ObtenerListaSugerencias(){
+		
+		Response<Sugerencias> response = new Response<>();
+		try {
+			response.setEstado(true);
+			response.setListData((List<Sugerencias>) sugerenciasRepository.findAll());
+			
+		} catch (Exception e) {
+			response.setEstado(false);
+			response.setMensajeError(e.getStackTrace().toString());
+		}
+		return response;
+	}
+}

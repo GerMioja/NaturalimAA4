@@ -1,0 +1,5 @@
+package com.naturalim.demo.interfaces;
+
+public interface IRol {
+
+}

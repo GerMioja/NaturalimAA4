@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/plantilla/plantilla :: head" ></head>
+<body>
+	<br>
+	<header th:replace="/plantilla/plantilla :: header"></header><br>
+	<div class="jumbotron jumbotron-fluid bg-transparent">
+		<div class="container mt-1">
+			<h1 class="display-6 text-white bg-dark" style="text-align: center"
+				th:text="${titulo}"></h1>
+			<hr>
+		</div>
+
+		<section style="padding: 20px">
+			<div class="row row-cols-1 row-cols-md-3">
+				<div class="col mb-4"
+					th:each="productos : ${ListaProductos}">
+					<div class="card">
+						<img th:src="${productos.uriImagen}" class="card-img-top"
+							alt="...">
+						<div class="card-body">
+							<h5 class="card-title" th:text="${productos.nombre}"></h5>
+							<p class="card-text" th:text="${productos.precio}">s</p>
+						</div>
+						<div>
+							<a th:href="@{/app/aEditar/}+${productos.idProducto}"
+								class="btn btn-sm btn-info">Editar</a> <a
+								th:href="@{/app/aEliminar/}+${productos.idProducto}"
+								class="btn btn-sm btn-danger">Eliminar</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<br>
+	<div class="fab">
+		<input type="checkbox" id="btn-mas ">
+		<a class="fab" href="/app/form"><img src="/images/anadir.png" width="30px" height="30px"></a>
+	</div>
+	
+	
+	
+	<footer th:replace="/plantilla/plantilla :: footer"></footer>
+</body>
+</html>

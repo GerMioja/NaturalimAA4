@@ -1,0 +1,5 @@
+package com.naturalim.demo.service;
+
+public interface IRolService {
+
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/plantilla/plantilla :: head" ></head>
+<body>
+	<br>
+	<header th:replace="/plantilla/plantilla :: header"></header><br>
+	
+	<div class="container mt-3">
+		<div class="jumbotron">
+			<hr>
+			<div class="card p-4"
+				style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+
+
+				<form th:action="@{/app/sNuevoform}" th:object="${sugerencias}"
+					method="post">
+					
+					<div class="form-group">
+						<label for="nomClie">Nombre</label> <input type="text"
+							name="nomClie" th:field="*{nomClie}" class="form-control"
+							id="nomClie">
+					</div>
+					<span class="form-text text-danger" th:if="${#fields.hasErrors('nomClie')}" th:errors="*{nomClie}"></span>
+					
+					<div class="form-group">
+						<label for="apeClie">Apellido</label> <input type="text"
+							name="apeClie" th:field="*{apeClie}" class="form-control"
+							id="apeClie">
+					</div>
+					<span class="form-text text-danger" th:if="${#fields.hasErrors('apeClie')}" th:errors="*{apeClie}"></span>
+					
+					<div class="form-group">
+						<label for="email">Email</label> <input type="text"
+							name="email" th:field="*{email}" class="form-control"
+							id="email">
+					</div>
+					<span class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+					
+					<div class="form-group">
+						<label for="numCel">Numero de Celular</label> <input type="text"
+							name="numCel" th:field="*{numCel}" class="form-control"
+							id="numCel">
+					</div>
+					<span class="form-text text-danger" th:if="${#fields.hasErrors('numCel')}" th:errors="*{numCel}"></span>
+					
+					<div class="form-group">
+						<label for="direccion">Direccion</label> <input type="text"
+							name="direccion" th:field="*{direccion}" class="form-control"
+							id="direccion">
+					</div>
+					<span class="form-text text-danger" th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></span>
+					
+					<div class="form-group">
+						<label for="motReclamo">Motivo del Reclamo</label> <input type="text"
+							name="motReclamo" th:field="*{motReclamo}" class="form-control"
+							id="motReclamo">
+					</div>
+					<span class="form-text text-danger" th:if="${#fields.hasErrors('motReclamo')}" th:errors="*{motReclamo}"></span>
+					
+					<div class="form-group">
+						<label for="nivel">Nivel</label> <input type="text"
+							name="nivel" th:field="*{nivel}" class="form-control"
+							id="nivel">
+					</div>
+					<span class="form-text text-danger" th:if="${#fields.hasErrors('nivel')}" th:errors="*{nivel}"></span>
+
+					<button type="submit" class="btn btn-primary">Guardar</button>
+					
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<footer th:replace="/plantilla/plantilla :: footer"></footer>
+</body>
+</html>

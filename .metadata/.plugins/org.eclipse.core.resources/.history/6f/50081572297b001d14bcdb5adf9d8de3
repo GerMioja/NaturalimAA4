@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/plantilla/plantilla :: head" ></head>
+<body>
+	<br>
+	<header th:replace="/plantilla/plantilla :: header"></header><br>
+	
+	<div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h2>Sugerencias</h2>
+
+                        <hr>
+                        <table class="table table-sm table-hover table-bordered ">
+                            <thead class=" table-dark">
+                                <th scope="col">id</th>
+                                <th scope="col">Contenido</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Editar</th>
+                                <th scope="col">Eliminar</th>
+                            </thead>
+                            <tbody>
+                                <tr th:each="reclamos : ${ListaReclamos}">
+                                    <th scope="row" th:text="${reclamos.id}"></th>
+                                    <td th:text="${reclamos.nomClie}"></td>
+                                    <td th:text="${reclamos.apeClie}"></td>
+                                    <td th:text="${reclamos.email}"></td>
+                                    <td th:text="${reclamos.numCel}"></td>
+                                    <td th:text="${reclamos.direccion}"></td>
+                                    <td th:text="${reclamos.motReclamo}"></td>
+                                    <td th:text="${reclamos.nivel}"></td>
+                                    <td><a th:href="@{/app/Editar/}+${reclamos.id}"
+                                            class="btn btn-sm btn-info">Editar</a></td>
+                                    <td><a th:href="@{/app/Eliminar/}+${reclamos.id}"
+                                            class="btn btn-sm btn-danger">Eliminar</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	
+	<footer th:replace="/plantilla/plantilla :: footer"></footer>
+</body>
+</html>

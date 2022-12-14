@@ -1,0 +1,48 @@
+package com.naturalim.demo.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.naturalim.demo.interfaces.ISugerencias;
+import com.naturalim.demo.models.Response;
+import com.naturalim.demo.models.Sugerencias;
+
+@Component
+public class RolService implements IRolService {
+	@Autowired
+	private IRol rolRepository;
+	
+	public Response<Sugerencias>ObtenerListaSugerencias(){
+		
+		Response<Sugerencias> response = new Response<>();
+		try {
+			response.setEstado(true);
+			response.setListData((List<Sugerencias>) sugerenciasRepository.findAll());
+			
+		} catch (Exception e) {
+			response.setEstado(false);
+			response.setMensajeError(e.getStackTrace().toString());
+		}
+		return response;
+	}
+	
+	@Override
+	public Response<Sugerencias> EditarSugerencias(Integer id) {
+		Response<Sugerencias> response = new Response<>();
+
+		try {
+			Optional<Sugerencias> p = sugerenciasRepository.findById(id);
+
+			response.setEstado(true);
+			response.setData(p.get());
+
+		} catch (Exception e) {
+			response.setEstado(false);
+			response.setMensajeError(e.getStackTrace().toString());
+		}
+		return response;
+	}
+}

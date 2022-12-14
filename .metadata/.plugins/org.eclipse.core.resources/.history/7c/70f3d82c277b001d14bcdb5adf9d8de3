@@ -1,0 +1,63 @@
+package com.naturalim.demo.service;
+
+import java.util.List;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.naturalim.demo.interfaces.ISugerencias;
+import com.naturalim.demo.models.Sugerencias;
+import com.naturalim.demo.models.Response;
+
+public class SugerenciasService implements ISugerenciasService {
+	
+	@Autowired
+	private ISugerencias sugerenciasRepository;
+	
+	public Response<Sugerencias>ObtenerListaSugerencias(){
+		
+		Response<Sugerencias> response = new Response<>();
+		try {
+			response.setEstado(true);
+			response.setListData((List<Sugerencias>) sugerenciasRepository.findAll());
+			
+		} catch (Exception e) {
+			response.setEstado(false);
+			response.setMensajeError(e.getStackTrace().toString());
+		}
+		return response;
+	}
+	
+	@Override
+	public Response<Sugerencias> CrearSugerencias(Sugerencias sugerencias) {
+		
+		Response<Sugerencias> response = new Response<>();
+
+		try {
+			Sugerencias p = sugerenciasRepository.save(sugerencias);
+			response.setEstado(true);
+			response.setData(p);
+			response.setListData((List<Sugerencias>) sugerenciasRepository.findAll());
+			
+		} catch (Exception e) {
+			response.setEstado(false);
+			response.setMensajeError(e.getStackTrace().toString());
+		}
+		return response;
+	}
+	
+	@Override
+	public Response<Sugerencias> EditarSugerencias(Integer id) {
+		Response<Sugerencias> response = new Response<>();
+
+		try {
+			Optional<Sugerencias> p = sugerenciasRepository.findById(id);
+
+			response.setEstado(true);
+			response.setData(p.get());
+
+		} catch (Exception e) {
+			response.setEstado(false);
+			response.setMensajeError(e.getStackTrace().toString());
+		}
+		return response;
+	}
+}

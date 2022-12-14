@@ -1,0 +1,17 @@
+package com.naturalim.demo.service;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import com.naturalim.demo.models.Sugerencias;
+import com.naturalim.demo.models.ResponseS;
+
+public interface ISugerenciasService {
+	
+	public ResponseS<Sugerencias> ObtenerListaSugerencias();
+	
+	public ResponseS<Sugerencias> CrearSugerencias(Sugerencias sugerencias);
+	
+	public ResponseS<Sugerencias> EditarSugerencias(Integer id);
+	
+	public ResponseS<Sugerencias> EliminarSugerencias(Integer id);
+}

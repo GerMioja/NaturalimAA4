@@ -1,0 +1,20 @@
+package com.naturalim.demo.service;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import com.naturalim.demo.models.ProductoAlimentos;
+import com.naturalim.demo.models.Response;
+
+public interface IProductoAlimentosService {
+	
+	public Response<ProductoAlimentos> ObtenerListaProductoAlimentos();
+	
+	public Response<ProductoAlimentos> CrearProductoAlimentos(ProductoAlimentos productoAlimentos, MultipartFile fileProductoAlimentos );
+	
+	public Response<ProductoAlimentos> CrearPokemonAPI(ProductoAlimentosDTO productoAlimentos);
+	
+	public Response<ProductoAlimentos> EditarProductoAlimentos(Integer id);
+	
+	public Response<ProductoAlimentos> EliminarProductoAlimentos(Integer id);
+
+}

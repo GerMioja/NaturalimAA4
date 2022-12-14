@@ -1,0 +1,10 @@
+package com.naturalim.demo.controller;
+
+
+
+
+@RestController
+@RequestMapping("/api")
+public class ApiRestController {
+
+}

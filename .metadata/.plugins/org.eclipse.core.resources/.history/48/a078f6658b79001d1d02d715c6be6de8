@@ -1,0 +1,14 @@
+package com.naturalim.demo.interfaces;
+
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import com.naturalim.demo.models.ProductoAlimentos;
+
+@Repository
+public interface IProductoAlimentos extends CrudRepository<ProductoAlimentos, Integer> {
+
+	List<ProductoAlimentos> findBy(String precio);
+	
+}

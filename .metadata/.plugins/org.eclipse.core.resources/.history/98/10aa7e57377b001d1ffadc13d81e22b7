@@ -1,0 +1,9 @@
+package com.naturalim.demo.interfaces;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.naturalim.demo.models.Sugerencias;
+
+public interface IRol extends CrudRepository<Sugerencias, Integer>{
+
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/plantilla/plantilla :: head" ></head>
+<body>
+	<br>
+	<header th:replace="/plantilla/plantilla :: header"></header><br>
+	
+	<div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h2>Roles</h2>
+
+                        <hr>
+                        <table class="table table-sm table-hover table-bordered ">
+                            <thead class=" table-dark">
+                                <th scope="col">idUsuario</th>
+                                <th scope="col">Rol</th>
+                            </thead>
+                            <tbody>
+                                <tr th:each="rol : ${ListaRol}">
+                                    <th scope="row" th:text="${rol.id}"></th>
+                                    <td th:text="${rol.nombre}"></td>
+                                    <td><a th:href="@{/app/rEditar/}+${rol.id}"
+                                            class="btn btn-sm btn-info">Editar</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	
+	<footer th:replace="/plantilla/plantilla :: footer"></footer>
+</body>
+</html>

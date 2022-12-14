@@ -1,0 +1,10 @@
+package com.naturalim.demo.helper;
+
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
+import org.springframework.stereotype.Service;
+
+@Service
+public class Helper implements IHelper{
+
+}

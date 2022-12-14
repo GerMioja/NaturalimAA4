@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/plantilla/plantilla :: head" ></head>
+<body>
+	<header th:replace="/plantilla/plantilla :: header"></header><br>
+	
+	<header class="main-header">
+      <div class="background-overlay text-white py-5">
+        <div class="container">
+          <div class="row d-flex h-100">
+            <div class="col-sm-6 text-center justify-content-center align-self-center">
+              <h1>
+                Bienvenidos a Naturalim
+              </h1>
+              <p th:text="${slogan}">Esperamos que encuentres lo que buscas</p>
+              <a href="#" class="btn btn-outline-secondary btn-lg text-white">
+                Read More
+              </a>
+            </div>
+            <div class="col-sm-6">
+              <img src="/images/logo_nat.jpeg" class="img-fluid d-none d-sm-block">
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+	
+	<div class="card-group">
+		<div class="card bg-light">
+			<img src="http://3.bp.blogspot.com/-7RN5VnMaOR8/VqTDTruFhLI/AAAAAAAAEFA/BAuzCqbNPuw/s1600/vida%2Bsana%2Bcon%2Bsusana%2Bbody%2Bdance%2Bmush%2Bmurcia%2B2%2Bdanza%2Btanta%255B1%255D.png" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title" th:text="${nosotros}"></h5>
+				<p class="card-text">Somos una empresa que ofrece productos para aquellas personas que deseen llevar un estilo de vida más sano. Fomentamos el consumo de alimentos saludables así como el ejercicio y deporte.</p>
+				<p class="card-text">
+					<small class="text-muted">Last updated 5 days ago</small>
+				</p>
+			</div>
+		</div>
+		<div class="card bg-light">
+			<img src="https://www.ciudadciencia.es/wp-content/uploads/2016/10/FOTO-PARA-ANUNCIO-CHARLA.jpg" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title" th:text="${objetivo}"></h5>
+				<p class="card-text" th:text="${mision}"></p>
+				<p class="card-text">
+					<small class="text-muted">Last updated 5 days ago</small>
+				</p>
+			</div>
+		</div>
+		<div class="card bg-light">
+			<img src="/images/logo_nat.jpeg" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title">Vision</h5>
+				<p class="card-text" th:text="${vision}"></p>
+				<p class="card-text">
+					<small class="text-muted">Last updated 5 days ago</small>
+				</p>
+			</div>
+		</div>
+	</div>
+	
+	<footer th:replace="/plantilla/plantilla :: footer"></footer>
+</body>
+</html>

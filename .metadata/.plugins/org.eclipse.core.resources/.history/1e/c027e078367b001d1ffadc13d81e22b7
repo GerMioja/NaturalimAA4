@@ -1,0 +1,11 @@
+package com.naturalim.demo.service;
+
+import com.naturalim.demo.models.Response;
+import com.naturalim.demo.models.Rol;
+
+public interface IRolService {
+	
+	public Response<Rol> ObtenerListaSugerencias();
+	
+	public Response<Rol> EditarSugerencias(Integer id);
+}

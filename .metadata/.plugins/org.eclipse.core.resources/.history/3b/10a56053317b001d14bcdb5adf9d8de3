@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/plantilla/plantilla :: head" ></head>
+<body>
+	<br>
+	<header th:replace="/plantilla/plantilla :: header"></header><br>
+	
+	<div class="container mt-3">
+		<div class="jumbotron">
+			<h1 class="display-4" th:text="${titulo}"></h1>
+			<hr>
+			<div class="card p-4"
+				style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+
+
+				<form th:action="@{/app/sNuevoform}" th:object="${sugerencias}"
+					method="post">
+					
+					<div class="form-group">
+						<label for="contenido">Contenido</label> <input type="text"
+							name="contenido" th:field="*{contenido}" class="form-control"
+							id="contenido">
+					</div>
+					<span class="form-text text-danger" th:if="${#fields.hasErrors('contenido')}" th:errors="*{contenido}"></span>
+					
+					<div class="form-group">
+						<label for="fecha">Fecha</label> <input type="date"
+							name="fecha" th:field="*{fecha}" class="form-control"
+							id="fecha">
+					</div>
+					<span class="form-text text-danger" th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></span>
+					
+					<div class="form-group">
+						<label for="estado">Estado</label> <input type="text"
+							name="estado" th:field="*{estado}" class="form-control"
+							id="estado">
+					</div>
+					<span class="form-text text-danger" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></span>
+
+					<button type="submit" class="btn btn-primary">Guardar</button>
+					
+					<div th:if=${param.error}>
+						<div class="alert alert-success">Sugerencia enviada exitosamenente</div>
+					</div>
+					
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<footer th:replace="/plantilla/plantilla :: footer"></footer>
+</body>
+</html>

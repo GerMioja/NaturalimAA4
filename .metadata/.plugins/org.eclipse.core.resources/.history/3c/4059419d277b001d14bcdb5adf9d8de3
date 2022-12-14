@@ -1,0 +1,10 @@
+package com.naturalim.demo.controller;
+
+
+@Controller
+@RequestMapping("/app")
+@SessionAttributes("sugerencias")
+public class SugerenciasController {
+	
+	
+}

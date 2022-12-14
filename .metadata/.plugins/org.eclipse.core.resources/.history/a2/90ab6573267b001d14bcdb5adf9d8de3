@@ -1,0 +1,11 @@
+package com.naturalim.demo.repositorio;
+
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.naturalim.demo.models.Sugerencias;
+
+public interface SugerenciasDAO extends CrudRepository<Sugerencias, Integer>{
+	public List<Sugerencias> findById( Integer idSugerencias);
+}

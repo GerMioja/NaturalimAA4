@@ -1,0 +1,39 @@
+package com.naturalim.demo.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+import com.naturalim.demo.models.ProductoRopa;
+
+@Component
+public class ProductoRopaService implements IProductoRopaService {
+	@Override
+	public List<ProductoRopa>ObtenerListaProductoRopa(){
+		ProductoRopa productoRopa = new ProductoRopa();
+		ProductoRopa productoRopa2 = new ProductoRopa();
+		ProductoRopa productoRopa3 = new ProductoRopa();
+		
+		List<ProductoRopa>listaProductoRopa = new ArrayList<>();
+		
+		productoRopa.setNombre("Pantalón Deportivo Tejido - Negro");
+		productoRopa.setPrecio("S/35.00");
+		productoRopa.setUriImagen("https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/9798bb83375b4486a605ad4300997a85_9366/Pantalon_Deportivo_adidas_SPRT_Shark_Tejido_Negro_H06758_21_model.jpg");
+		
+		productoRopa2.setNombre("Buzo Conjunto Deportivo Hombre Fratta");
+		productoRopa2.setPrecio("S/40.00");
+		productoRopa2.setUriImagen("https://falabella.scene7.com/is/image/FalabellaPE/882485645_1?wid=1500&hei=1500&qlt=70");
+		
+		productoRopa3.setNombre("Pantalón de Buzo para hombre HEAD SPORT");
+		productoRopa3.setPrecio("S/80.00");
+		productoRopa3.setUriImagen("https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/db791d33f9c34d83ab49ae3f0144f0bc_9366/Pantalon_de_Algodon_Grueso_Lifestyler_Real_Madrid_Negro_HD1339_21_model.jpg");
+		
+		listaProductoRopa.add(productoRopa);
+		listaProductoRopa.add(productoRopa2);
+		listaProductoRopa.add(productoRopa3);
+		
+		return listaProductoRopa;
+	}
+	
+}

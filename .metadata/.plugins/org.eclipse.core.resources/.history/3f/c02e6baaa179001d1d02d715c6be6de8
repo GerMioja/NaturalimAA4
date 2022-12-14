@@ -1,0 +1,6 @@
+@charset "UTF-8";
+
+body{
+	font-family: arial, helvetica;
+ 	background: url(/images/background.jpeg);
+  	background-size: cover;
